@@ -23,7 +23,7 @@ class MainMenu extends TBX.Scene2D
         let Play:any = new TBX.Tile(); 
         Play.Name = "Play"; 
         Play.Collection = Buttons; 
-        Play.Index = 0; 
+        Play.Index = 0;
         Play.Size = new TBX.Vertex(250, 150, 1); 
         Play.Position = new TBX.Vertex(960, 650, 0.1); 
         Play.Events.MouseDown.push(this.PlayClick.bind(this)); 
