@@ -41,11 +41,31 @@ class Player extends TBX.Sprite
         if(this._Left)
         {
             this._Velocity.X = -10;
+            if(this.Collision.Result.Left)
+            this._Velocity.X = 0;
+            for(let i in this.Collision.Result.LeftColliders)
+            {
+                if(this.Collision.Result.LeftColliders[i].Data["SideCollision"])
+                {
+                    this._Velocity.X = 0;
+                    break;
+                }
+            }
             if(!this._Jump) this.UpdS("Run");
         }
         else if(this._Right)
         {
             this._Velocity.X = 10;
+            if(this.Collision.Result.Right)
+            this._Velocity.X = 0;
+            for(let i in this.Collision.Result.RightColliders)
+            {
+                if(this.Collision.Result.RightColliders[i].Data["SideCollision"])
+                {
+                    this._Velocity.X = 0;
+                    break;
+                }
+            }
             if(!this._Jump) this.UpdS("Run");
         }
         else
@@ -98,6 +118,8 @@ class Player extends TBX.Sprite
         this._Velocity = new TBX.Vertex();
         this.Size = new TBX.Vertex(256,256,1);
         this.Position = new TBX.Vertex(960, 500, 0.2);
+        this.Collision.Type = TBX.CollisionType.Horizontal;
+        this.Collision.Scale = new TBX.Vertex(150, 256, 1);
         let IdleSet:TBX.SpriteSet = new TBX.SpriteSet(null, [], "Idle");
         IdleSet.Seed = 15;
         this.LoadSet("Idle", 2, 15);
