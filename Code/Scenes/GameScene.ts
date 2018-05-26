@@ -3,11 +3,13 @@ export { GameScene };
 import * as TBX from "engineer-js";
 
 import { Player } from "./../Elements/Player";
+import { Parallax } from "./../Elements/Parallax";
 import { LevelGenerator } from "./LevelGenerator";
 
 class GameScene extends TBX.Scene2D
 {
     private _Player:Player;
+    private _Parallax:Parallax;
     private _Generator:LevelGenerator;
     public get Player():Player { return this._Player; }
     public set Player(value:Player) { this._Player = value; }
@@ -21,9 +23,11 @@ class GameScene extends TBX.Scene2D
         // Virtual
         this.Name = "Game";
         this._Player = new Player(null, this);
+        this._Parallax = new Parallax();
+        this.Attach(this._Parallax);
         this._Generator = new LevelGenerator(null, this);
         this.InitLevel();
-        this.GenerateBackground();
+        //this.GenerateBackground();
         this.Events.KeyDown.push(this.KeyDown.bind(this));
         this.Events.KeyUp.push(this.KeyUp.bind(this));
         this.Events.Update.push(this.Update.bind(this));
@@ -31,6 +35,7 @@ class GameScene extends TBX.Scene2D
     private Update()
     {
         this._Player.Update();
+        this._Parallax.Update();
     }
     private KeyDown(G:TBX.Game, Args:any) : void
     {
@@ -47,6 +52,8 @@ class GameScene extends TBX.Scene2D
         this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(10,8), 3);
         this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(13,6), 3);
         this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(18,4), 3);
+        this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(21,8), 40);
+        this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(62,8), 40);
     }
     protected GenerateBackground() : void
     {
