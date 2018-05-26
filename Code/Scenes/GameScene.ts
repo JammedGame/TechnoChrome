@@ -42,9 +42,11 @@ class GameScene extends TBX.Scene2D
     }
     private InitLevel() : void
     {
-        this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(600,800), 6);
-        this._Generator.GenerateVertical("Tec", new TBX.Vertex(600,600), 6);
-        this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(2200,650), 6);
+        this._Generator.GenerateVertical("Tec", new TBX.Vertex(2,7), 4);
+        this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(2,8), 5);
+        this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(10,8), 3);
+        this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(13,6), 3);
+        this._Generator.GenerateHorizontal("Tec", new TBX.Vertex(18,4), 3);
     }
     protected GenerateBackground() : void
     {

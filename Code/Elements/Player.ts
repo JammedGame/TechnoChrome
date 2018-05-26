@@ -5,6 +5,7 @@ import * as TBX from "engineer-js";
 class Player extends TBX.Sprite
 {
     private _Jump:boolean;
+    private _Landing:boolean;
     private _Left:boolean;
     private _Right:boolean;
     private _Flipped:boolean;
@@ -35,8 +36,9 @@ class Player extends TBX.Sprite
         else if(this._Velocity.Y > 0)
         {
             // Landing
+            this._Landing = true;
             this._Velocity.Y = 0;
-            if(!this._Jump) this.UpdS("Idle");
+            if(!this._Jump) this.UpdS("Landing");
         }
         if(this._Left)
         {
@@ -71,7 +73,7 @@ class Player extends TBX.Sprite
         else
         {
             this._Velocity.X = 0;
-            if(!this._Jump && this._Velocity.Y == 0) this.UpdS("Idle");
+            if(!this._Jump && !this._Landing && this.Collision.Result.Bottom) this.UpdS("Idle");
         }
         this.Position.Add(this._Velocity);
         this._Scene.Trans.Translation.Add(this._Velocity.Copy().Scalar(-1));
@@ -109,8 +111,12 @@ class Player extends TBX.Sprite
     {
         if(this._Jump)
         {
-            this._Velocity.Y = -25;
+            this._Velocity.Y = -28;
             this._Jump = false;
+        }
+        if(this._Landing)
+        {
+            this._Landing = false;
         }
     }
     public Init() : void
@@ -118,13 +124,14 @@ class Player extends TBX.Sprite
         this._Velocity = new TBX.Vertex();
         this.Size = new TBX.Vertex(256,256,1);
         this.Position = new TBX.Vertex(960, 500, 0.2);
-        this.Collision.Type = TBX.CollisionType.Horizontal;
-        this.Collision.Scale = new TBX.Vertex(150, 256, 1);
+        this.Collision.Type = TBX.CollisionType.Rectangular;
+        this.Collision.Scale = new TBX.Vertex(135, 256, 1);
         let IdleSet:TBX.SpriteSet = new TBX.SpriteSet(null, [], "Idle");
         IdleSet.Seed = 15;
         this.LoadSet("Idle", 2, 15);
         this.LoadSet("Run", 8);
-        this.LoadSet("Jump", 3);
+        this.LoadSet("Jump", 3, 3);
+        this.LoadSet("Landing", 3, 5);
         this.LoadSet("Fall", 1, 30);
         this.Events.SetComplete.push(this.AnimationFinished.bind(this));
         this.SetS("Idle");
