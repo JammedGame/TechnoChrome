@@ -46,11 +46,12 @@ class ActionTile extends TBX.Tile
         this.Collision.Active = true;
         this.Size = new TBX.Vertex(TILE_SIZE,TILE_SIZE);
         this.Position = new TBX.Vertex(Data.X, Data.Y).Scalar(TILE_SIZE).Add(new TBX.Vertex(0,0,0.2));
+        if(Data.S == "Misc") this.Position.Y += 20;
         this.Collection = ActionTile._Sets[Data.S];
         this.Index = Data.T;
         this.Material.Sampling = TBX.TextureSamplingType.Nearest;
         this.Collision.Type = TBX.CollisionType.Rectangular;
-        if(Data.S == "Wall")
+        if(Data.S == "Wall" || Data.S == "Misc")
         {
             this.Collision.Active = false;
             return;
@@ -87,6 +88,8 @@ class ActionTile extends TBX.Tile
         for(let i = 0; i < 16; i++) this._Sets["Brick"].Images.push("Resources/Textures/Tiles/Tileset03/brick"+i+".png");
         this._Sets["Nesto"] = new TBX.ImageCollection(null, []);
         for(let i = 0; i < 16; i++) this._Sets["Nesto"].Images.push("Resources/Textures/Tiles/Tileset04/nesto"+i+".png");
+        this._Sets["Misc"] = new TBX.ImageCollection(null, []);
+        for(let i = 0; i < 9; i++) this._Sets["Misc"].Images.push("Resources/Textures/Tiles/Tileset0X/misc"+i+".png");
         this._Sets["Wall"] = new TBX.ImageCollection(null, []);
         for(let i = 0; i < 9; i++) this._Sets["Wall"].Images.push("Resources/Textures/Tiles/Tileset00/tileset0_"+i+".png");
     }

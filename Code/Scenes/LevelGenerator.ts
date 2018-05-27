@@ -72,6 +72,7 @@ class LevelGenerator
     }
     private DecodeSet(Set:number) : string
     {
+        if(Set == -2) return "Misc";
         if(Set == -1) return "Wall";
         if(Set == 0) return "Tec";
         if(Set == 1) return "Pipe";

@@ -34,7 +34,7 @@ class Parallax extends TBX.Tile
         this.Fixed = true;
         this.Position = new TBX.Vertex(960,540,0);
         this.Size = new TBX.Vertex(1920, 1080, 0);
-        this.Collection = new TBX.ImageCollection(null, ["Resources/Textures/Backgrounds/BackB2.png"]);
+        this.Collection = new TBX.ImageCollection(null, ["Resources/Textures/Backgrounds/BackB4.png"]);
         this.Index = 0;
         this.Paint = TBX.Color.FromString("#7EC0EE");
         this._Layer1_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background3.png", "#777799");
