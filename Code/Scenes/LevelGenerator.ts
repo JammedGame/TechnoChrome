@@ -4,7 +4,7 @@ import * as TBX from "engineer-js";
 
 import { ColorModel, ActionTile } from "./../Elements/ActionTile";
 
-import { Chunk1, Chunk2, Chunk3 } from "./LevelData";
+import { Chunk1, Chunk2, Chunk3, Chunk4 } from "./LevelData";
 
 const TILE_SIZE = 192;
 
@@ -93,5 +93,6 @@ class LevelGenerator
         this.CreateChunk(Chunk1, 4, 0);
         this.CreateChunk(Chunk2, 24, 0);
         this.CreateChunk(Chunk3, 39, 0);
+        this.CreateChunk(Chunk4, 49, -1);
     }
 }
