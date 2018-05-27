@@ -68,6 +68,7 @@ class ActionTile extends TBX.Tile
         {
             this.Collision.Scale = new TBX.Vertex(TILE_SIZE-70,TILE_SIZE-70);
         }
+        else this.Collision.Scale = new TBX.Vertex(TILE_SIZE-70,TILE_SIZE-70);
         if(Data.S = "Pipe" && (Data.T > 7 && Data.T < 12))
         {
             this.Collision.Type == TBX.CollisionType.Radius;
@@ -79,9 +80,13 @@ class ActionTile extends TBX.Tile
     {
         this._Sets = {};
         this._Sets["Tec"] = new TBX.ImageCollection(null, []);
-        for(let i = 0; i < 12; i++) this._Sets["Tec"].Images.push("Resources/Textures/Tiles/Tileset01/tileset01_"+i+".png");
+        for(let i = 0; i < 16; i++) this._Sets["Tec"].Images.push("Resources/Textures/Tiles/Tileset01/tileset01_"+i+".png");
         this._Sets["Pipe"] = new TBX.ImageCollection(null, []);
-        for(let i = 0; i < 12; i++) this._Sets["Pipe"].Images.push("Resources/Textures/Tiles/Tileset02/tileset2_"+i+".png");
+        for(let i = 0; i < 16; i++) this._Sets["Pipe"].Images.push("Resources/Textures/Tiles/Tileset02a/tileset2_"+i+".png");
+        this._Sets["Brick"] = new TBX.ImageCollection(null, []);
+        for(let i = 0; i < 16; i++) this._Sets["Brick"].Images.push("Resources/Textures/Tiles/Tileset03/brick"+i+".png");
+        this._Sets["Nesto"] = new TBX.ImageCollection(null, []);
+        for(let i = 0; i < 16; i++) this._Sets["Nesto"].Images.push("Resources/Textures/Tiles/Tileset04/nesto"+i+".png");
         this._Sets["Wall"] = new TBX.ImageCollection(null, []);
         for(let i = 0; i < 9; i++) this._Sets["Wall"].Images.push("Resources/Textures/Tiles/Tileset00/tileset0_"+i+".png");
     }
@@ -101,6 +106,18 @@ class ActionTile extends TBX.Tile
         {
             this.Collision.Active = this._Model == ColorModel.Yellow || this._Model == ColorModel.Orange || this._Model == ColorModel.Green;
         }
+        else if(Current == ColorModel.Orange)
+        {
+            this.Collision.Active = this._Model == ColorModel.Red || this._Model == ColorModel.Yellow || this._Model == ColorModel.Orange;
+        }
+        else if(Current == ColorModel.Purple)
+        {
+            this.Collision.Active = this._Model == ColorModel.Red || this._Model == ColorModel.Blue || this._Model == ColorModel.Purple;
+        }
+        else if(Current == ColorModel.Green)
+        {
+            this.Collision.Active = this._Model == ColorModel.Blue || this._Model == ColorModel.Yellow || this._Model == ColorModel.Green;
+        }
         else this.Collision.Active = Current == this._Model;
         if(Current == ColorModel.Default)
         {
@@ -112,7 +129,6 @@ class ActionTile extends TBX.Tile
         }
         else if(this.Collision.Active)
         {
-            console.log("aa");
             this.Paint = TBX.Color.FromString(this.ColorByModel(Current));
         }
         else

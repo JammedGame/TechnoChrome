@@ -37,24 +37,28 @@ class GameScene extends TBX.Scene2D
     {
         this._Player.Update();
         this._Parallax.Update();
+        this._Generator.Update();
     }
     private KeyDown(G:TBX.Game, Args:any) : void
     {
         this._Player.KeyDown(Args.KeyCode);
         if(Args.KeyCode == 49)
         {
-            this._Parallax.UpdateFilter(ColorModel.Red);
-            this._Generator.UpdateFilter(ColorModel.Red);
+            this._Player.Power.Apply(ColorModel.Red);
+            this._Parallax.UpdateFilter(this._Player.Power.Get());
+            this._Generator.UpdateFilter(this._Player.Power.Get());
         }
         if(Args.KeyCode == 50)
         {
-            this._Parallax.UpdateFilter(ColorModel.Blue);
-            this._Generator.UpdateFilter(ColorModel.Blue);
+            this._Player.Power.Apply(ColorModel.Blue);
+            this._Parallax.UpdateFilter(this._Player.Power.Get());
+            this._Generator.UpdateFilter(this._Player.Power.Get());
         }
         if(Args.KeyCode == 51)
         {
-            this._Parallax.UpdateFilter(ColorModel.Yellow);
-            this._Generator.UpdateFilter(ColorModel.Yellow);
+            this._Player.Power.Apply(ColorModel.Yellow);
+            this._Parallax.UpdateFilter(this._Player.Power.Get());
+            this._Generator.UpdateFilter(this._Player.Power.Get());
         }
     }
     private KeyUp(G:TBX.Game, Args:any) : void

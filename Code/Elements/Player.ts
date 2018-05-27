@@ -2,8 +2,11 @@ export { Player }
 
 import * as TBX from "engineer-js";
 
+import { PowerModel } from "./PowerModel";
+
 class Player extends TBX.Sprite
 {
+    public static Single:Player;
     private _Jump:boolean;
     private _Landing:boolean;
     private _Left:boolean;
@@ -11,6 +14,8 @@ class Player extends TBX.Sprite
     private _Flipped:boolean;
     private _Scene:TBX.Scene2D;
     private _Velocity:TBX.Vertex;
+    private _Power:PowerModel;
+    public get Power():PowerModel { return this._Power; }
     public constructor(Old?:Player, Scene?:TBX.Scene2D)
     {
         super(Old);
@@ -23,6 +28,7 @@ class Player extends TBX.Sprite
         else
         {
             this.Init();
+            Player.Single = this;
         }
     }
     public Update()
@@ -111,6 +117,7 @@ class Player extends TBX.Sprite
     }
     public Init() : void
     {
+        this._Power = new PowerModel();
         this._Velocity = new TBX.Vertex();
         this.Size = new TBX.Vertex(256,256,1);
         this.Position = new TBX.Vertex(960, 500, 0.3);
@@ -118,7 +125,7 @@ class Player extends TBX.Sprite
         this.Collision.Scale = new TBX.Vertex(135, 256, 1);
         let IdleSet:TBX.SpriteSet = new TBX.SpriteSet(null, [], "Idle");
         IdleSet.Seed = 15;
-        this.LoadSet("Idle", 2, 15);
+        this.LoadSet("Idle", 1, 15);
         this.LoadSet("Run", 8);
         this.LoadSet("Jump", 3, 3);
         this.LoadSet("Landing", 3, 5);

@@ -34,13 +34,15 @@ class Parallax extends TBX.Tile
         this.Fixed = true;
         this.Position = new TBX.Vertex(960,540,0);
         this.Size = new TBX.Vertex(1920, 1080, 0);
-        this.Paint = TBX.Color.FromString("#FFFFFF");
-        this._Layer1_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background3.png", "#666666");
-        this._Layer1_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background3.png", "#666666", true);
-        this._Layer2_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background2.png", "#999999");
-        this._Layer2_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background2.png", "#999999", true);
-        this._Layer3_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background1.png", "#CCCCCC");
-        this._Layer3_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background1.png", "#CCCCCC", true);
+        this.Collection = new TBX.ImageCollection(null, ["Resources/Textures/Backgrounds/BackB2.png"]);
+        this.Index = 0;
+        this.Paint = TBX.Color.FromString("#7EC0EE");
+        this._Layer1_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background3.png", "#777799");
+        this._Layer1_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background3.png", "#777799", true);
+        this._Layer2_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background2.png", "#665566");
+        this._Layer2_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background2.png", "#665566", true);
+        this._Layer3_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background1.png", "#443344");
+        this._Layer3_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background1.png", "#443344", true);
     }
     public Update() : void
     {
@@ -78,8 +80,8 @@ class Parallax extends TBX.Tile
     }
     public UpdateFilter(Current:ColorModel)
     {
-        this.Paint = TBX.Color.FromString("#FFFFFF");
-        if(Current == ColorModel.Red) this.Paint = TBX.Color.Red;
+        this.Paint = TBX.Color.FromString("#7EC0EE");
+        if(Current == ColorModel.Red) this.Paint = TBX.Color.FromString("#ED2939");
         if(Current == ColorModel.Blue) this.Paint = TBX.Color.Blue;
         if(Current == ColorModel.Yellow) this.Paint = TBX.Color.Yellow;
         if(Current == ColorModel.Purple) this.Paint = TBX.Color.Purple;

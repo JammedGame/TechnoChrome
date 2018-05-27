@@ -4,7 +4,9 @@ import * as TBX from "engineer-js";
 
 import { ColorModel, ActionTile } from "./../Elements/ActionTile";
 
-import { Chunk1, Chunk2, Chunk3, Chunk4 } from "./LevelData";
+import { ColorPower } from "./../Elements/ColorPower";
+
+import { Chunk1, Chunk2, Chunk3, Chunk4, Chunk5, Chunk6 } from "./LevelData";
 
 const TILE_SIZE = 192;
 
@@ -12,6 +14,7 @@ class LevelGenerator
 {
     private _Sets:any;
     private _Scene:TBX.Scene2D;
+    private _Powers:ColorPower[];
     private _Changeables:ActionTile[];
     public constructor(Old?:LevelGenerator, Scene?:TBX.Scene2D)
     {
@@ -28,6 +31,13 @@ class LevelGenerator
     public Init()
     {
         
+    }
+    public Update()
+    {
+        for(let i in this._Powers)
+        {
+            this._Powers[i].Update();
+        }
     }
     public UpdateFilter(Current:ColorModel)
     {
@@ -65,6 +75,8 @@ class LevelGenerator
         if(Set == -1) return "Wall";
         if(Set == 0) return "Tec";
         if(Set == 1) return "Pipe";
+        if(Set == 2) return "Brick";
+        if(Set == 3) return "Nesto";
     }
     public CreateTile(Data:any) : void
     {
@@ -86,13 +98,23 @@ class LevelGenerator
                 this.CreateTile(Dat);
             }
         }
+        for(let i in Data.Powers)
+        {
+            let CPD = Data.Powers[i];
+            let CP = new ColorPower(null, new TBX.Vertex(CPD.X + XOffset, CPD.Y + YOffset, 0), <ColorModel>CPD.C);
+            this._Scene.Attach(CP);
+            this._Powers.push(CP);
+        }
     }
     public CreateLevel()
     {
+        this._Powers = [];
         this._Changeables = [];
         this.CreateChunk(Chunk1, 4, 0);
         this.CreateChunk(Chunk2, 24, 0);
         this.CreateChunk(Chunk3, 39, 0);
         this.CreateChunk(Chunk4, 49, -1);
+        this.CreateChunk(Chunk5, 65, -3);
+        this.CreateChunk(Chunk6, 80, -1);
     }
 }
