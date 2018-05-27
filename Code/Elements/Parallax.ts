@@ -39,10 +39,10 @@ class Parallax extends TBX.Tile
         this.Paint = TBX.Color.FromString("#7EC0EE");
         this._Layer1_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background3.png", "#777799");
         this._Layer1_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background3.png", "#777799", true);
-        this._Layer2_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background2.png", "#665566");
-        this._Layer2_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background2.png", "#665566", true);
-        this._Layer3_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background1.png", "#443344");
-        this._Layer3_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background1.png", "#443344", true);
+        this._Layer2_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background2a.png", "#665566");
+        this._Layer2_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background2a.png", "#665566", true);
+        this._Layer3_1 = this.CreateLayer("Resources/Textures/Backgrounds/Background1a.png", "#443344");
+        this._Layer3_2 = this.CreateLayer("Resources/Textures/Backgrounds/Background1a.png", "#443344", true);
     }
     public Update() : void
     {
