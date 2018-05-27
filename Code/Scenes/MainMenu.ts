@@ -44,7 +44,6 @@ class MainMenu extends TBX.Scene2D
     }
     public PlayClick(G:any, Args:any) : void 
     { 
-        console.log("ddsada");
         let Scene = new GameScene(); 
         this._Game.Attach(Scene); 
         this._Runner.SwitchScene("Game", false); 

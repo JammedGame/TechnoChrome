@@ -36,6 +36,11 @@ class Player extends TBX.Sprite
         else if(this._Velocity.Y > 0)
         {
             // Landing
+            if(this.Collision.Result.Colliders.length > 0)
+            {
+                let Collider = this.Collision.Result.Colliders[0];
+                this.Position.Y = Collider.Position.Y - Collider.Scale.Y / 2 - this.Size.Y / 2 + 10;
+            }
             this._Landing = true;
             this._Velocity.Y = 0;
             if(!this._Jump) this.UpdS("Landing");
@@ -45,30 +50,14 @@ class Player extends TBX.Sprite
             this._Velocity.X = -10;
             if(this.Collision.Result.Left)
             this._Velocity.X = 0;
-            for(let i in this.Collision.Result.LeftColliders)
-            {
-                if(this.Collision.Result.LeftColliders[i].Data["SideCollision"])
-                {
-                    this._Velocity.X = 0;
-                    break;
-                }
-            }
-            if(!this._Jump) this.UpdS("Run");
+            if(!this._Jump && !this._Landing) this.UpdS("Run");
         }
         else if(this._Right)
         {
             this._Velocity.X = 10;
             if(this.Collision.Result.Right)
             this._Velocity.X = 0;
-            for(let i in this.Collision.Result.RightColliders)
-            {
-                if(this.Collision.Result.RightColliders[i].Data["SideCollision"])
-                {
-                    this._Velocity.X = 0;
-                    break;
-                }
-            }
-            if(!this._Jump) this.UpdS("Run");
+            if(!this._Jump && !this._Landing) this.UpdS("Run");
         }
         else
         {
