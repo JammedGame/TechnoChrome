@@ -82,16 +82,24 @@ class ActionTile extends TBX.Tile
         this._Sets = {};
         this._Sets["Tec"] = new TBX.ImageCollection(null, []);
         for(let i = 0; i < 16; i++) this._Sets["Tec"].Images.push("Resources/Textures/Tiles/Tileset01/tileset01_"+i+".png");
+        this._Sets["Tecg"] = new TBX.ImageCollection(null, []);
+        for(let i = 0; i < 16; i++) this._Sets["Tecg"].Images.push("Resources/Textures/Tiles/Tileset01g/tileset01_"+i+".png");
         this._Sets["Pipe"] = new TBX.ImageCollection(null, []);
         for(let i = 0; i < 16; i++) this._Sets["Pipe"].Images.push("Resources/Textures/Tiles/Tileset02a/tileset2_"+i+".png");
+        this._Sets["Pipeg"] = new TBX.ImageCollection(null, []);
+        for(let i = 0; i < 16; i++) this._Sets["Pipeg"].Images.push("Resources/Textures/Tiles/Tileset02g/tileset2_"+i+".png");
         this._Sets["Brick"] = new TBX.ImageCollection(null, []);
         for(let i = 0; i < 16; i++) this._Sets["Brick"].Images.push("Resources/Textures/Tiles/Tileset03/brick"+i+".png");
+        this._Sets["Brickg"] = new TBX.ImageCollection(null, []);
+        for(let i = 0; i < 16; i++) this._Sets["Brickg"].Images.push("Resources/Textures/Tiles/Tileset03g/brick"+i+".png");
         this._Sets["Nesto"] = new TBX.ImageCollection(null, []);
         for(let i = 0; i < 16; i++) this._Sets["Nesto"].Images.push("Resources/Textures/Tiles/Tileset04/nesto"+i+".png");
+        this._Sets["Nestog"] = new TBX.ImageCollection(null, []);
+        for(let i = 0; i < 16; i++) this._Sets["Nestog"].Images.push("Resources/Textures/Tiles/Tileset04g/nesto"+i+".png");
         this._Sets["Misc"] = new TBX.ImageCollection(null, []);
         for(let i = 0; i < 9; i++) this._Sets["Misc"].Images.push("Resources/Textures/Tiles/Tileset0X/misc"+i+".png");
         this._Sets["Wall"] = new TBX.ImageCollection(null, []);
-        for(let i = 0; i < 9; i++) this._Sets["Wall"].Images.push("Resources/Textures/Tiles/Tileset00/tileset0_"+i+".png");
+        for(let i = 0; i < 10; i++) this._Sets["Wall"].Images.push("Resources/Textures/Tiles/Tileset00/tileset0_"+i+".png");
     }
     public ApplyColorModel(Current:ColorModel)
     {
@@ -144,7 +152,7 @@ class ActionTile extends TBX.Tile
     {
         if(Model == ColorModel.Default) return "#FFFFFF";
         if(Model == ColorModel.Invisible) return "#888888";
-        if(Model == ColorModel.Red) return "#FF0000";
+        if(Model == ColorModel.Red) return "#ED2939"
         if(Model == ColorModel.Blue) return "#0000FF";
         if(Model == ColorModel.Yellow) return "#FFFF00";
         if(Model == ColorModel.Purple) return "#FF00FF";
@@ -155,7 +163,7 @@ class ActionTile extends TBX.Tile
     {
         if(Model == ColorModel.Default) return "#FFFFFF";
         if(Model == ColorModel.Invisible) return "#888888";
-        if(Model == ColorModel.Red) return "#FF8888";
+        if(Model == ColorModel.Red) return "#DD8888";
         if(Model == ColorModel.Blue) return "#8888FF";
         if(Model == ColorModel.Yellow) return "#FFFF88";
         if(Model == ColorModel.Purple) return "#FF88FF";

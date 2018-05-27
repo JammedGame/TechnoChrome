@@ -60,7 +60,7 @@ let Chunk3 =
         null,               null,               null,               null,               {T:4,S:3,C:0,O:0},  {T:0,S:-1,C:0,O:0}, {T:1,S:-1,C:0,O:0}, {T:4,S:-1,C:0,O:0}, {T:8,S:-1,C:0,O:0}, {T:4,S:3,C:0,O:0}, 
         null,               null,               null,               null,               {T:5,S:3,C:0,O:0},  {T:3,S:-1,C:0,O:0}, {T:4,S:-1,C:0,O:0}, {T:8,S:-1,C:0,O:0}, {T:11,S:3,C:0,O:0}, {T:15,S:3,C:0,O:0}, 
         null,               null,               null,               null,               {T:0,S:-1,C:0,O:0}, {T:4,S:-1,C:0,O:0}, {T:8,S:-1,C:0,O:0}, {T:11,S:3,C:0,O:0}, {T:13,S:3,C:0,O:0}, {T:15,S:3,C:0,O:0}, 
-        null,               null,               null,               null,               {T:6,S:-1,C:0,O:0}, {T:8,S:-1,C:0,O:0}, {T:11,S:3,C:0,O:0}, {T:15,S:3,C:0,O:0}, {T:4,S:-1,C:0,O:0}, {T:4,S:3,C:0,O:0},  
+        null,               null,               null,               null,               {T:6,S:-1,C:0,O:0}, {T:8,S:-1,C:0,O:0}, {T:11,S:3,C:0,O:0}, {T:15,S:3,C:0,O:0}, {T:9,S:-1,C:0,O:0}, {T:4,S:3,C:0,O:0},  
         {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:1,S:3,C:0,O:0},  {T:1,S:3,C:0,O:0},  {T:13,S:3,C:0,O:0}, {T:13,S:3,C:0,O:0}, {T:1,S:3,C:0,O:0},  {T:8,S:3,C:0,O:0},
     ],
     Powers:
@@ -127,7 +127,7 @@ let Chunk6 =
         {T:6,S:2,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:2,S:1,C:0,O:0},  null,               null,               null,
         {T:15,S:2,C:6,O:0}, null,               null,               null,               null,               null,               null,
         {T:4,S:2,C:6,O:0},  null,               null,               {T:0,S:-2,C:0,O:0}, null,               null,               null,
-        {T:6,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:6,O:0},  {T:1,S:2,C:2,O:0},  {T:1,S:2,C:4,O:0},  {T:1,S:2,C:6,O:0},  {T:1,S:2,C:2,O:0},
+        {T:6,S:2,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:1,S:1,C:6,O:0},  {T:1,S:1,C:2,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:6,O:0},  {T:1,S:1,C:2,O:0},
         {T:4,S:2,C:4,O:0},  null,               null,               null,               null,               null,               null,
         {T:4,S:2,C:4,O:0},  null,               null,               null,               null,               null,               null,
         {T:4,S:2,C:4,O:0},  null,               null,               null,               null,               null,               null,

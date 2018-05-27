@@ -82,6 +82,11 @@ class LevelGenerator
     public CreateTile(Data:any) : void
     {
         Data.S = this.DecodeSet(Data.S);
+        if(Data.C > 1)
+        {
+            Data.S += "g";
+            console.log("dfsd");
+        }
         let Tile:ActionTile = new ActionTile(null, Data);
         if(Data.C > 1) this._Changeables.push(Tile);
         this._Scene.Attach(Tile);
