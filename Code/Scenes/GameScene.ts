@@ -5,6 +5,7 @@ import * as TBX from "engineer-js";
 import { Player } from "./../Elements/Player";
 import { Parallax } from "./../Elements/Parallax";
 import { LevelGenerator } from "./LevelGenerator";
+import { ColorModel } from "./../Elements/ActionTile";
 
 class GameScene extends TBX.Scene2D
 {
@@ -40,6 +41,21 @@ class GameScene extends TBX.Scene2D
     private KeyDown(G:TBX.Game, Args:any) : void
     {
         this._Player.KeyDown(Args.KeyCode);
+        if(Args.KeyCode == 49)
+        {
+            this._Parallax.UpdateFilter(ColorModel.Red);
+            this._Generator.UpdateFilter(ColorModel.Red);
+        }
+        if(Args.KeyCode == 50)
+        {
+            this._Parallax.UpdateFilter(ColorModel.Blue);
+            this._Generator.UpdateFilter(ColorModel.Blue);
+        }
+        if(Args.KeyCode == 51)
+        {
+            this._Parallax.UpdateFilter(ColorModel.Yellow);
+            this._Generator.UpdateFilter(ColorModel.Yellow);
+        }
     }
     private KeyUp(G:TBX.Game, Args:any) : void
     {

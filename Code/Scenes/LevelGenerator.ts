@@ -2,9 +2,9 @@ export { LevelGenerator }
 
 import * as TBX from "engineer-js";
 
-import { ActionTile } from "./../Elements/ActionTile";
+import { ColorModel, ActionTile } from "./../Elements/ActionTile";
 
-import { Chunk1, Chunk2 } from "./LevelData";
+import { Chunk1, Chunk2, Chunk3 } from "./LevelData";
 
 const TILE_SIZE = 192;
 
@@ -12,6 +12,7 @@ class LevelGenerator
 {
     private _Sets:any;
     private _Scene:TBX.Scene2D;
+    private _Changeables:ActionTile[];
     public constructor(Old?:LevelGenerator, Scene?:TBX.Scene2D)
     {
         this._Scene = Scene;
@@ -27,6 +28,13 @@ class LevelGenerator
     public Init()
     {
         
+    }
+    public UpdateFilter(Current:ColorModel)
+    {
+        for(let i in this._Changeables)
+        {
+            this._Changeables[i].ApplyColorModel(Current);
+        }
     }
     public GenerateHorizontal(Collection:string, Position:TBX.Vertex, Length:number)
     {
@@ -62,6 +70,7 @@ class LevelGenerator
     {
         Data.S = this.DecodeSet(Data.S);
         let Tile:ActionTile = new ActionTile(null, Data);
+        if(Data.C > 1) this._Changeables.push(Tile);
         this._Scene.Attach(Tile);
     }
     public CreateChunk(Data:any, XOffset:number, YOffset:number)
@@ -80,7 +89,9 @@ class LevelGenerator
     }
     public CreateLevel()
     {
+        this._Changeables = [];
         this.CreateChunk(Chunk1, 4, 0);
         this.CreateChunk(Chunk2, 24, 0);
+        this.CreateChunk(Chunk3, 39, 0);
     }
 }
