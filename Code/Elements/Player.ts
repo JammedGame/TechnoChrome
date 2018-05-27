@@ -36,10 +36,11 @@ class Player extends TBX.Sprite
         else if(this._Velocity.Y > 0)
         {
             // Landing
-            if(this.Collision.Result.Colliders.length > 0)
+            if(this.Collision.Result.BottomColliders.length > 0)
             {
-                let Collider = this.Collision.Result.Colliders[0];
+                let Collider = this.Collision.Result.BottomColliders[0];
                 this.Position.Y = Collider.Position.Y - Collider.Scale.Y / 2 - this.Size.Y / 2 + 10;
+                this._Scene.Trans.Translation = new TBX.Vertex(this._Scene.Trans.Translation.X, 540 - this.Position.Y);
             }
             this._Landing = true;
             this._Velocity.Y = 0;
@@ -112,7 +113,7 @@ class Player extends TBX.Sprite
     {
         this._Velocity = new TBX.Vertex();
         this.Size = new TBX.Vertex(256,256,1);
-        this.Position = new TBX.Vertex(960, 500, 0.2);
+        this.Position = new TBX.Vertex(960, 500, 0.3);
         this.Collision.Type = TBX.CollisionType.Rectangular;
         this.Collision.Scale = new TBX.Vertex(135, 256, 1);
         let IdleSet:TBX.SpriteSet = new TBX.SpriteSet(null, [], "Idle");

@@ -4,6 +4,8 @@ import * as TBX from "engineer-js";
 
 import { ActionTile } from "./../Elements/ActionTile";
 
+import { Chunk1, Chunk2 } from "./LevelData";
+
 const TILE_SIZE = 192;
 
 class LevelGenerator
@@ -42,12 +44,43 @@ class LevelGenerator
     {
         let Data =
         {
-            SetT: Type,
-            Col: Collection,
+            T: Type,
+            S: Collection,
             X: Position.X,
             Y: Position.Y
         };
         let Tile:ActionTile = new ActionTile(null, Data);
         return Tile;
+    }
+    private DecodeSet(Set:number) : string
+    {
+        if(Set == -1) return "Wall";
+        if(Set == 0) return "Tec";
+        if(Set == 1) return "Pipe";
+    }
+    public CreateTile(Data:any) : void
+    {
+        Data.S = this.DecodeSet(Data.S);
+        let Tile:ActionTile = new ActionTile(null, Data);
+        this._Scene.Attach(Tile);
+    }
+    public CreateChunk(Data:any, XOffset:number, YOffset:number)
+    {
+        for(let i = 0; i < Data.X; i++)
+        {
+            for(let j = 0; j < Data.Y; j++)
+            {
+                let Dat = Data.Tiles[j * Data.X + i];
+                if(!Dat) continue;
+                Dat.X = i + XOffset;
+                Dat.Y = j + YOffset;
+                this.CreateTile(Dat);
+            }
+        }
+    }
+    public CreateLevel()
+    {
+        this.CreateChunk(Chunk1, 4, 0);
+        this.CreateChunk(Chunk2, 24, 0);
     }
 }
