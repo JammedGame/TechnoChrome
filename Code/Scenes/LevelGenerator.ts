@@ -7,7 +7,7 @@ import { ColorModel, ActionTile } from "./../Elements/ActionTile";
 import { Secret } from "./../Elements/Secret";
 import { ColorPower } from "./../Elements/ColorPower";
 
-import { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, Chunk6, TallBrickWall, Chunk4bSecret, Chunk1Secret } from "./LevelData";
+import { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, Chunk6, TallBrickWall, Chunk4bSecret, Chunk1Secret, DeathFloorChunk } from "./LevelData";
 
 const TILE_SIZE = 192;
 
@@ -87,10 +87,10 @@ class LevelGenerator
     }
     public CreateTile(Data:any) : void
     {
-        Data.S = this.DecodeSet(Data.S);
+        Data.SP = this.DecodeSet(Data.S);
         if(Data.C > 1)
         {
-            Data.S += "g";
+            Data.SP += "g";
             console.log("dfsd");
         }
         let Tile:ActionTile = new ActionTile(null, Data);
@@ -141,5 +141,9 @@ class LevelGenerator
         this.CreateChunk(Chunk5, 88, -1);
         this.CreateChunk(TallBrickWall, 103, -9);
         this.CreateChunk(Chunk6, 103, 1);
+        for(let i = -2; i < 10; i++)
+        {
+            this.CreateChunk(DeathFloorChunk, i*8, 40);
+        }
     }
 }

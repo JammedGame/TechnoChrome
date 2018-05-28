@@ -1,4 +1,4 @@
-export { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, TallBrickWall, Chunk6, Chunk1Secret, Chunk4bSecret }
+export { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, TallBrickWall, Chunk6, Chunk1Secret, Chunk4bSecret, DeathFloorChunk }
 
 let Chunk1 =
 {
@@ -232,6 +232,20 @@ let Chunk6 =
         {T:4,S:2,C:4,O:0},  null,               {T:1,S:-2,C:0,O:0}, null,               null,               {T:5,S:-2,C:0,O:0}, null,
         {T:14,S:2,C:0,O:0}, {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:10,S:2,C:0,O:0},  
         {T:8,S:2,C:0,O:0},  null,               null,               null,               null,               null,               {T:5,S:2,C:0,O:0},
+    ],
+    Powers:[],
+    Secrets:[]
+}
+
+let DeathFloorChunk =
+{
+    X:8,
+    Y:3,
+    Tiles:
+    [
+        null,               null,               {T:11,S:1,C:0,O:0}, {T:1,S:1,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:10,S:1,C:0,O:0}, null,               null,               
+        null,               null,               {T:4,S:1,C:0,O:0},  null,               null,               {T:4,S:1,C:0,O:0},  null,               null,               
+        {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},             
     ],
     Powers:[],
     Secrets:[]

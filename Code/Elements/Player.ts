@@ -52,9 +52,20 @@ class Player extends TBX.Sprite
                 this.Position.Y = Collider.Position.Y - Collider.Scale.Y / 2 - this.Size.Y / 2 + 10;
                 this._Scene.Trans.Translation = new TBX.Vertex(this._Scene.Trans.Translation.X, 540 - this.Position.Y);
             }
-            this._Landing = true;
-            this._Velocity.Y = 0;
-            if(!this._Jump && !this._Death) this.UpdS("Landing");
+            if(this._Velocity.Y > 90)
+            {
+                this._Velocity.Y = 0;
+                this.UpdS("Death");
+                this._Death = true;
+                this._Left = false;
+                this._Right = false;
+            }
+            else
+            {
+                this._Landing = true;
+                this._Velocity.Y = 0;
+                if(!this._Jump && !this._Death) this.UpdS("Landing");
+            }
         }
         if(this._Left)
         {

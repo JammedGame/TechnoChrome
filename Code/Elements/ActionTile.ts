@@ -46,12 +46,12 @@ class ActionTile extends TBX.Tile
         this.Collision.Active = true;
         this.Size = new TBX.Vertex(TILE_SIZE,TILE_SIZE);
         this.Position = new TBX.Vertex(Data.X, Data.Y).Scalar(TILE_SIZE).Add(new TBX.Vertex(0,0,0.2));
-        if(Data.S == "Misc") this.Position.Y += 20;
-        this.Collection = ActionTile._Sets[Data.S];
+        if(Data.SP == "Misc") this.Position.Y += 20;
+        this.Collection = ActionTile._Sets[Data.SP];
         this.Index = Data.T;
         this.Material.Sampling = TBX.TextureSamplingType.Nearest;
         this.Collision.Type = TBX.CollisionType.Rectangular;
-        if(Data.S == "Wall" || Data.S == "Misc")
+        if(Data.SP == "Wall" || Data.SP == "Misc")
         {
             this.Collision.Active = false;
             return;
@@ -70,7 +70,7 @@ class ActionTile extends TBX.Tile
             this.Collision.Scale = new TBX.Vertex(TILE_SIZE-70,TILE_SIZE-70);
         }
         else this.Collision.Scale = new TBX.Vertex(TILE_SIZE-70,TILE_SIZE-70);
-        if(Data.S = "Pipe" && (Data.T > 7 && Data.T < 12))
+        if(Data.SP = "Pipe" && (Data.T > 7 && Data.T < 12))
         {
             this.Collision.Type == TBX.CollisionType.Radius;
         }
@@ -135,7 +135,8 @@ class ActionTile extends TBX.Tile
             if(this._Model == ColorModel.Invisible) this.Paint = TBX.Color.FromString("#888888");
             else
             {
-                this.Paint = TBX.Color.FromString(this.HalfColorByModel(this._Model));
+                this.Paint = TBX.Color.FromString(this.ColorByModel(this._Model));
+                this.Paint.A = 120;
             }
         }
         else if(this.Collision.Active)
@@ -144,7 +145,12 @@ class ActionTile extends TBX.Tile
         }
         else
         {
-            this.Paint = TBX.Color.FromString("#888888");
+            if(this._Model == ColorModel.Invisible) this.Paint = TBX.Color.FromString("#888888");
+            else
+            {
+                this.Paint = TBX.Color.FromString(this.ColorByModel(this._Model));
+                this.Paint.A = 120;
+            }
         }
         this.Modified = true;
     }
