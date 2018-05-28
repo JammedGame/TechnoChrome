@@ -4,9 +4,10 @@ import * as TBX from "engineer-js";
 
 import { ColorModel, ActionTile } from "./../Elements/ActionTile";
 
+import { Secret } from "./../Elements/Secret";
 import { ColorPower } from "./../Elements/ColorPower";
 
-import { Chunk1, Chunk2, Chunk3, Chunk4, Chunk5, Chunk6 } from "./LevelData";
+import { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, Chunk6, TallBrickWall, Chunk4bSecret, Chunk1Secret } from "./LevelData";
 
 const TILE_SIZE = 192;
 
@@ -14,6 +15,7 @@ class LevelGenerator
 {
     private _Sets:any;
     private _Scene:TBX.Scene2D;
+    private _Secrets:Secret[];
     private _Powers:ColorPower[];
     private _Changeables:ActionTile[];
     public constructor(Old?:LevelGenerator, Scene?:TBX.Scene2D)
@@ -37,6 +39,10 @@ class LevelGenerator
         for(let i in this._Powers)
         {
             this._Powers[i].Update();
+        }
+        for(let i in this._Secrets)
+        {
+            this._Secrets[i].Update();
         }
     }
     public UpdateFilter(Current:ColorModel)
@@ -111,16 +117,29 @@ class LevelGenerator
             this._Scene.Attach(CP);
             this._Powers.push(CP);
         }
+        for(let i in Data.Secrets)
+        {
+            let CPD = Data.Secrets[i];
+            let CP = new Secret(null, new TBX.Vertex(CPD.X + XOffset, CPD.Y + YOffset, 0));
+            this._Scene.Attach(CP);
+            this._Secrets.push(CP);
+        }
     }
     public CreateLevel()
     {
         this._Powers = [];
+        this._Secrets = [];
         this._Changeables = [];
         this.CreateChunk(Chunk1, 4, 0);
+        this.CreateChunk(Chunk1Secret, -3, -5);
         this.CreateChunk(Chunk2, 24, 0);
         this.CreateChunk(Chunk3, 39, 0);
         this.CreateChunk(Chunk4, 49, -1);
-        this.CreateChunk(Chunk5, 65, -3);
-        this.CreateChunk(Chunk6, 80, -1);
+        this.CreateChunk(Chunk4a, 65, 3);
+        this.CreateChunk(Chunk4b, 75, -2);
+        this.CreateChunk(Chunk4bSecret, 80, -4);
+        this.CreateChunk(Chunk5, 88, -1);
+        this.CreateChunk(TallBrickWall, 103, -9);
+        this.CreateChunk(Chunk6, 103, 1);
     }
 }

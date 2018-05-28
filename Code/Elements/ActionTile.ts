@@ -129,7 +129,7 @@ class ActionTile extends TBX.Tile
         {
             this.Collision.Active = this._Model == ColorModel.Blue || this._Model == ColorModel.Yellow || this._Model == ColorModel.Green;
         }
-        else this.Collision.Active = Current == this._Model;
+        else this.Collision.Active = <ColorModel>Current == this._Model;
         if(Current == ColorModel.Default)
         {
             if(this._Model == ColorModel.Invisible) this.Paint = TBX.Color.FromString("#888888");

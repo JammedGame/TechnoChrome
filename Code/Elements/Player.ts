@@ -9,12 +9,16 @@ class Player extends TBX.Sprite
     public static Single:Player;
     private _Jump:boolean;
     private _Landing:boolean;
+    private _Death:boolean;
     private _Left:boolean;
     private _Right:boolean;
     private _Flipped:boolean;
     private _Scene:TBX.Scene2D;
     private _Velocity:TBX.Vertex;
     private _Power:PowerModel;
+    private _SecretsFound:number;
+    public get SecretsFound() : number { return this._SecretsFound; }
+    public set SecretsFound(value:number) { this._SecretsFound = value; }
     public get Power():PowerModel { return this._Power; }
     public constructor(Old?:Player, Scene?:TBX.Scene2D)
     {
@@ -37,7 +41,7 @@ class Player extends TBX.Sprite
         if(!this.Collision.Result.Bottom)
         {
             this._Velocity.Y += 1;
-            if(!this._Jump) this.UpdS("Fall");
+            if(!this._Jump && !this._Death) this.UpdS("Fall");
         }
         else if(this._Velocity.Y > 0)
         {
@@ -50,32 +54,39 @@ class Player extends TBX.Sprite
             }
             this._Landing = true;
             this._Velocity.Y = 0;
-            if(!this._Jump) this.UpdS("Landing");
+            if(!this._Jump && !this._Death) this.UpdS("Landing");
         }
         if(this._Left)
         {
             this._Velocity.X = -10;
             if(this.Collision.Result.Left)
             this._Velocity.X = 0;
-            if(!this._Jump && !this._Landing) this.UpdS("Run");
+            if(!this._Jump && !this._Landing && !this._Death) this.UpdS("Run");
         }
         else if(this._Right)
         {
             this._Velocity.X = 10;
             if(this.Collision.Result.Right)
             this._Velocity.X = 0;
-            if(!this._Jump && !this._Landing) this.UpdS("Run");
+            if(!this._Jump && !this._Landing && !this._Death) this.UpdS("Run");
+        }
+        else if(this._Death && this._Velocity.X != 0)
+        {
+            if(this._Velocity.X < 0) this._Velocity.X += 0.1;
+            else this._Velocity.X -= 0.1;
+            if(Math.abs(this._Velocity.X) < 0.2) this._Velocity.X = 0;
         }
         else
         {
             this._Velocity.X = 0;
-            if(!this._Jump && !this._Landing && this.Collision.Result.Bottom) this.UpdS("Idle");
+            if(!this._Jump && !this._Landing && !this._Death && this.Collision.Result.Bottom) this.UpdS("Idle");
         }
         this.Position.Add(this._Velocity);
         this._Scene.Trans.Translation.Add(this._Velocity.Copy().Scalar(-1));
     }
     public KeyDown(KeyCode:number) : void
     {
+        if(this._Death) return;
         if(KeyCode == 32 && this.Collision.Result.Bottom)
         {
             this.SetS("Jump");
@@ -91,9 +102,17 @@ class Player extends TBX.Sprite
             this._Right = true;
             this._Flipped = false;
         }
+        else if(KeyCode == 88)
+        {
+            this.UpdS("Death");
+            this._Death = true;
+            this._Left = false;
+            this._Right = false;
+        }
     }
     public KeyUp(KeyCode:number) : void
     {
+        if(this._Death) return;
         if(KeyCode == 65 || KeyCode == 37)
         {
             this._Left = false;
@@ -114,9 +133,14 @@ class Player extends TBX.Sprite
         {
             this._Landing = false;
         }
+        if(this._Death)
+        {
+            this.UpdS("Dead");
+        }
     }
     public Init() : void
     {
+        this._SecretsFound = 0;
         this._Power = new PowerModel();
         this._Velocity = new TBX.Vertex();
         this.Size = new TBX.Vertex(256,256,1);
@@ -125,8 +149,10 @@ class Player extends TBX.Sprite
         this.Collision.Scale = new TBX.Vertex(135, 256, 1);
         let IdleSet:TBX.SpriteSet = new TBX.SpriteSet(null, [], "Idle");
         IdleSet.Seed = 15;
-        this.LoadSet("Idle", 1, 15);
+        this.LoadSet("Idle", 2, 15);
         this.LoadSet("Run", 8);
+        this.LoadSet("Death", 4, 15);
+        this.LoadSet("Dead", 1);
         this.LoadSet("Jump", 3, 3);
         this.LoadSet("Landing", 3, 5);
         this.LoadSet("Fall", 1, 30);

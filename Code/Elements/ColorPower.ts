@@ -28,7 +28,7 @@ class ColorPower extends TBX.Tile
     public Update() : void
     {
         if(this._Picked) return;
-        if(TBX.Vertex.Distance(Player.Single.Position, this.Position) < 100)
+        if(TBX.Vertex.Distance(Player.Single.Position, this.Position) < 200)
         {
             this._Picked = true;
             this.Active = false;
@@ -40,7 +40,7 @@ class ColorPower extends TBX.Tile
         this._Model = Model;
         this.Collection = new TBX.ImageCollection(null, ["Resources/Textures/Misc/ColorPower.png"]);
         this.Index = 0;
-        this.Size = new TBX.Vertex(96,96,1);
+        this.Size = new TBX.Vertex(192,192,1);
         this.Position = Position.Scalar(192);
         this.Position.Z = 0.3;
         this.Paint = TBX.Color.FromString(this.ColorByModel(Model));
