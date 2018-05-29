@@ -20,7 +20,8 @@ let Chunk1 =
         null,               null,               null,               {T:9,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:13,S:2,C:0,O:0}, {T:1,S:1,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:2,S:1,C:0,O:0},
     ],
     Powers:[],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }
 
 let Chunk1Secret =
@@ -40,7 +41,8 @@ let Chunk1Secret =
     Secrets:
     [
         {X:1,Y:2}
-    ]
+    ],
+    Enemies:[]
 }
 
 let Chunk2 =
@@ -63,7 +65,8 @@ let Chunk2 =
         null,               {T:0,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:8,S:0,C:0,O:0},  null,               {T:0,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  
     ],
     Powers:[],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }
 
 let Chunk3 = 
@@ -89,7 +92,8 @@ let Chunk3 =
     [
         {X:8,Y:5,C:2}
     ],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }
 
 let Chunk4 =
@@ -105,7 +109,8 @@ let Chunk4 =
         {T:1,S:3,C:0,O:0},  {T:1,S:3,C:0,O:0},  {T:13,S:3,C:0,O:0}, {T:1,S:3,C:0,O:0},  {T:13,S:3,C:0,O:0}, {T:1,S:3,C:0,O:0},  {T:1,S:3,C:2,O:0},  {T:1,S:3,C:2,O:0},  {T:1,S:3,C:2,O:0},  {T:1,S:3,C:2,O:0},  {T:1,S:3,C:0,O:0},  {T:13,S:3,C:0,O:0}, {T:1,S:3,C:0,O:0},  {T:13,S:3,C:0,O:0}, {T:1,S:3,C:0,O:0},  {T:1,S:3,C:0,O:0},  
     ],
     Powers:[],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }
 
 let Chunk4a =
@@ -127,7 +132,8 @@ let Chunk4a =
         null,               null,               null,               null,               null,               null,               null,               {T:5,S:1,C:0,O:0},  null,               null,               
     ],
     Powers:[],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }
 
 let Chunk4b =
@@ -150,6 +156,10 @@ let Chunk4b =
     Secrets:
     [
         {X:9,Y:7}
+    ],
+    Enemies:
+    [
+        {X:8,Y:5}
     ]
 }
 
@@ -166,7 +176,8 @@ let Chunk4bSecret =
     Secrets:
     [
         {X:1,Y:-1}
-    ]
+    ],
+    Enemies:[]
 }
 
 let Chunk5 = 
@@ -197,7 +208,8 @@ let Chunk5 =
     [
         {X:7,Y:-1,C:4}
     ],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }
 
 let TallBrickWall =
@@ -209,7 +221,8 @@ let TallBrickWall =
         {T:3,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}, {T:4,S:2,C:0,O:0}
     ],
     Powers:[],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }
 
 let Chunk6 =
@@ -234,7 +247,8 @@ let Chunk6 =
         {T:8,S:2,C:0,O:0},  null,               null,               null,               null,               null,               {T:5,S:2,C:0,O:0},
     ],
     Powers:[],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }
 
 let DeathFloorChunk =
@@ -248,5 +262,6 @@ let DeathFloorChunk =
         {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},  {T:13,S:0,C:0,O:0}, {T:1,S:0,C:0,O:0},  {T:1,S:0,C:0,O:0},             
     ],
     Powers:[],
-    Secrets:[]
+    Secrets:[],
+    Enemies:[]
 }

@@ -6,6 +6,7 @@ import { ColorModel, ActionTile } from "./../Elements/ActionTile";
 
 import { Secret } from "./../Elements/Secret";
 import { ColorPower } from "./../Elements/ColorPower";
+import { Enemy } from "./../Elements/Enemy";
 
 import { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, Chunk6, TallBrickWall, Chunk4bSecret, Chunk1Secret, DeathFloorChunk } from "./LevelData";
 
@@ -16,6 +17,7 @@ class LevelGenerator
     private _Sets:any;
     private _Scene:TBX.Scene2D;
     private _Secrets:Secret[];
+    private _Enemies:Enemy[];
     private _Powers:ColorPower[];
     private _Changeables:ActionTile[];
     public constructor(Old?:LevelGenerator, Scene?:TBX.Scene2D)
@@ -43,6 +45,10 @@ class LevelGenerator
         for(let i in this._Secrets)
         {
             this._Secrets[i].Update();
+        }
+        for(let i in this._Enemies)
+        {
+            this._Enemies[i].Update();
         }
     }
     public UpdateFilter(Current:ColorModel)
@@ -91,7 +97,6 @@ class LevelGenerator
         if(Data.C > 1)
         {
             Data.SP += "g";
-            console.log("dfsd");
         }
         let Tile:ActionTile = new ActionTile(null, Data);
         if(Data.C > 1) this._Changeables.push(Tile);
@@ -124,11 +129,19 @@ class LevelGenerator
             this._Scene.Attach(CP);
             this._Secrets.push(CP);
         }
+        for(let i in Data.Enemies)
+        {
+            let CPD = Data.Enemies[i];
+            let CP = new Enemy(null, this._Scene, new TBX.Vertex(CPD.X + XOffset, CPD.Y + YOffset, 0));
+            this._Scene.Attach(CP);
+            this._Enemies.push(CP);
+        }
     }
     public CreateLevel()
     {
         this._Powers = [];
         this._Secrets = [];
+        this._Enemies = [];
         this._Changeables = [];
         this.CreateChunk(Chunk1, 4, 0);
         this.CreateChunk(Chunk1Secret, -3, -5);
