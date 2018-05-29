@@ -3,6 +3,7 @@ export { Player }
 import * as TBX from "engineer-js";
 
 import { PowerModel } from "./PowerModel";
+import { SoundManager } from "./../SoundManager";
 
 class Player extends TBX.Sprite
 {
@@ -10,6 +11,7 @@ class Player extends TBX.Sprite
     private _Jump:boolean;
     private _Landing:boolean;
     private _Death:boolean;
+    private _Dead:boolean;
     private _Left:boolean;
     private _Right:boolean;
     private _Flipped:boolean;
@@ -42,6 +44,7 @@ class Player extends TBX.Sprite
         if(!this.Collision.Result.Bottom)
         {
             this._Velocity.Y += 1;
+            if(this._Velocity.Y > 91) this._Velocity.Y = 91;
             if(!this._Jump && !this._Death) this.UpdS("Fall");
         }
         else if(this._Velocity.Y > 0)
@@ -56,13 +59,11 @@ class Player extends TBX.Sprite
             if(this._Velocity.Y > 90)
             {
                 this._Velocity.Y = 0;
-                this.UpdS("Death");
-                this._Death = true;
-                this._Left = false;
-                this._Right = false;
+                this.Kill();
             }
             else
             {
+                SoundManager.PlayJump();
                 this._Landing = true;
                 this._Velocity.Y = 0;
                 if(!this._Jump && !this._Death) this.UpdS("Landing");
@@ -98,6 +99,7 @@ class Player extends TBX.Sprite
     }
     public Kill()
     {
+        SoundManager.PlayDeath();
         this.UpdS("Death");
         this._Death = true;
         this._Left = false;
@@ -151,7 +153,10 @@ class Player extends TBX.Sprite
         }
         if(this._Death)
         {
+            if(this._Dead) return;
             this.UpdS("Dead");
+            setTimeout(TBX.Runner.Current.SwitchScene("GameOver", false), 10000);
+            this._Dead = true;
         }
     }
     public Init() : void

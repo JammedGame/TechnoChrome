@@ -57,6 +57,26 @@ class Parallax extends TBX.Tile
         while(this._Layer1_1.Position.X + 960 < 0) this._Layer1_1.Position.X += 1920;
         this._Layer1_2.Position.X = this._Layer1_1.Position.X + 1920;
     }
+    public Darken()
+    {
+        this.Paint = TBX.Color.Black;
+        this._Layer1_1.Paint = TBX.Color.FromString("#333333");
+        this._Layer1_2.Paint = TBX.Color.FromString("#333333");
+        this._Layer2_1.Paint = TBX.Color.FromString("#222222");
+        this._Layer2_2.Paint = TBX.Color.FromString("#222222");
+        this._Layer3_1.Paint = TBX.Color.FromString("#111111");
+        this._Layer3_2.Paint = TBX.Color.FromString("#111111");
+    }
+    public Liven()
+    {
+        this.Paint = TBX.Color.FromString("#7EC0EE");
+        this._Layer1_1.Paint = TBX.Color.FromString("#ED2939");
+        this._Layer1_2.Paint = TBX.Color.FromString("#ED2939");
+        this._Layer2_1.Paint = TBX.Color.FromString("#9370DB");
+        this._Layer2_2.Paint = TBX.Color.FromString("#9370DB");
+        this._Layer3_1.Paint = TBX.Color.FromString("#FF7F50");
+        this._Layer3_2.Paint = TBX.Color.FromString("#FF7F50");
+    }
     private CreateLayer(Image:string, Color:string, Offset?:boolean) : TBX.Tile
     {
         let Layer:TBX.Tile = new TBX.Tile();

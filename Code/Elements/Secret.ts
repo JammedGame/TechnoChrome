@@ -3,6 +3,7 @@ export { Secret }
 import * as TBX from "engineer-js";
 
 import { Player } from "./Player";
+import { SoundManager } from "./../SoundManager";
 
 class Secret extends TBX.Tile
 {
@@ -28,6 +29,7 @@ class Secret extends TBX.Tile
         if(this._Picked) return;
         if(TBX.Vertex.Distance(Player.Single.Position, this.Position) < 200)
         {
+            SoundManager.PlaySpecial();
             this._Picked = true;
             this.Active = false;
             Player.Single.SecretsFound+=1;

@@ -1,4 +1,4 @@
-export { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, TallBrickWall, Chunk6, Chunk1Secret, Chunk4bSecret, DeathFloorChunk }
+export { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, TallBrickWall, Chunk6, Chunk6a, Chunk1Secret, Chunk4bSecret, DeathFloorChunk, FinalChunk }
 
 let Chunk1 =
 {
@@ -235,7 +235,7 @@ let Chunk6 =
         {T:4,S:2,C:0,O:0},  null,               null,               null,               null,               null,               null, 
         {T:15,S:2,C:0,O:0}, null,               null,               null,               null,               null,               null,
         {T:4,S:2,C:0,O:0},  null,               null,               null,               null,               null,               null,
-        {T:6,S:2,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:2,S:1,C:0,O:0},  null,               null,               null,
+        {T:6,S:2,C:0,O:0},  null,               null,               null,               null,               null,               null,
         {T:15,S:2,C:6,O:0}, null,               null,               null,               null,               null,               null,
         {T:4,S:2,C:6,O:0},  null,               null,               {T:0,S:-2,C:0,O:0}, null,               null,               null,
         {T:6,S:2,C:0,O:0},  {T:1,S:1,C:0,O:0},  {T:1,S:1,C:6,O:0},  {T:1,S:1,C:2,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:6,O:0},  {T:1,S:1,C:2,O:0},
@@ -244,12 +244,59 @@ let Chunk6 =
         {T:4,S:2,C:4,O:0},  null,               null,               null,               null,               null,               null,
         {T:4,S:2,C:4,O:0},  null,               {T:1,S:-2,C:0,O:0}, null,               null,               {T:5,S:-2,C:0,O:0}, null,
         {T:14,S:2,C:0,O:0}, {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:10,S:2,C:0,O:0},  
-        {T:8,S:2,C:0,O:0},  null,               null,               null,               null,               null,               {T:5,S:2,C:0,O:0},
+        {T:8,S:2,C:0,O:0},  null,               null,               null,               null,               null,               {T:9,S:2,C:0,O:0},
     ],
     Powers:[],
     Secrets:[],
     Enemies:[]
 }
+
+let Chunk6a =
+{
+    X:10,
+    Y:14,
+    Tiles:
+    [
+        {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:15,S:2,C:0,O:0},
+        null,               null,               null,               null,               null,               null,               null,               null,               null,               {T:4,S:2,C:0,O:0}, 
+        null,               null,               null,               null,               null,               null,               null,               null,               null,               {T:4,S:2,C:0,O:0}, 
+        {T:3,S:2,C:2,O:0},  null,               null,               {T:3,S:2,C:6,O:0},  null,               null,               null,               null,               null,               {T:4,S:2,C:0,O:0}, 
+        {T:4,S:2,C:2,O:0},  null,               null,               {T:4,S:2,C:6,O:0},  null,               null,               null,               null,               null,               {T:4,S:2,C:0,O:0},  
+        {T:5,S:2,C:2,O:0},  null,               null,               {T:5,S:2,C:6,O:0},  null,               null,               null,               null,               null,               {T:4,S:2,C:0,O:0}, 
+        null,               null,               {T:7,S:2,C:4,O:0},  null,               null,               {T:7,S:2,C:2,O:0},  null,               null,               null,               {T:4,S:2,C:0,O:0}, 
+        null,               null,               null,               null,               null,               null,               null,               {T:0,S:2,C:0,O:0},  {T:1,S:2,C:0,O:0},  {T:8,S:2,C:0,O:0},  
+        null,               null,               null,               null,               null,               null,               null,               null,               null,               null, 
+        null,               null,               null,               null,               null,               null,               null,               null,               null,               null, 
+        null,               null,               null,               null,               null,               null,               null,               null,               null,               null, 
+        null,               null,               null,               null,               null,               null,               null,               null,               null,               null, 
+        null,               null,               null,               null,               null,               null,               null,               null,               null,               {T:11,S:2,C:0,O:0},   
+        {T:1,S:1,C:4,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:4,O:0},  {T:1,S:1,C:4,O:0},  {T:8,S:2,C:0,O:0},  
+    ],
+    Powers:[],
+    Secrets:
+    [
+        {X:8, Y:6}
+    ],
+    Enemies:[]
+}
+
+let FinalChunk =
+{
+    X:3,
+    Y:3,
+    Tiles:
+    [
+        null,               null,               null,               
+        null,               null,               {T:3,S:3,C:0,O:0},               
+        {T:1,S:2,C:0,O:0},  {T:1,S:3,C:0,O:0},  {T:8,S:3,C:0,O:0},                 
+    ],
+    Powers:[
+        {X:2,Y:0,C:-1}
+    ],
+    Secrets:[],
+    Enemies:[]
+}
+
 
 let DeathFloorChunk =
 {

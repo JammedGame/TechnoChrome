@@ -2,12 +2,14 @@ export { MainMenu };
  
 import * as TBX from "engineer-js";
  
-import { GameScene } from "./GameScene"; 
+import { GameScene } from "./GameScene";
+import { Parallax } from "./../Elements/Parallax";
  
 class MainMenu extends TBX.Scene2D 
 { 
     private _Game:any; 
-    private _Runner:any; 
+    private _Runner:any;
+    private _Parallax:Parallax; 
     public constructor(Runner:any, Game:any) 
     { 
         super(); 
@@ -17,35 +19,54 @@ class MainMenu extends TBX.Scene2D
     } 
     public Init() : void 
     { 
-        this. GenerateBackground();
-        this.Name = "Menu"; 
-        let Buttons:any = new TBX.ImageCollection(null, ["/Resources/Textures/Play.png"]); 
+        this.Name = "Menu";
+        this._Parallax = new Parallax();
+        this.Attach(this._Parallax);
+        let Title = TBX.SceneObjectUtil.CreateTile("Title", ["Resources/Textures/Title.png"], new TBX.Vertex(960, 250, 0.1), new TBX.Vertex(500, 120, 1));
+        Title.Fixed = true;
+        this.Attach(Title);
+        let Buttons:any = new TBX.ImageCollection(null, ["Resources/Textures/Play.png", "Resources/Textures/Credits.png"]); 
         let Play:any = new TBX.Tile(); 
         Play.Name = "Play"; 
+        Play.Fixed = true;
         Play.Collection = Buttons; 
         Play.Index = 0;
-        Play.Size = new TBX.Vertex(250, 150, 1); 
+        Play.Size = new TBX.Vertex(350, 80, 1); 
         Play.Position = new TBX.Vertex(960, 650, 0.1); 
         Play.Events.MouseDown.push(this.PlayClick.bind(this)); 
+        this.Events.Update.push(this.Update.bind(this));
+        let Credits:any = new TBX.Tile(); 
+        Credits.Name = "Credits"; 
+        Credits.Fixed = true;
+        Credits.Collection = Buttons; 
+        Credits.Index = 1;
+        Credits.Size = new TBX.Vertex(350, 80, 1); 
+        Credits.Position = new TBX.Vertex(960, 850, 0.1); 
+        Credits.Events.MouseDown.push(this.CreditsClick.bind(this)); 
+        this.Attach(Credits);
         this.Attach(Play);
     }
-    protected GenerateBackground() : void
+    public Update() : void
     {
-        this.BackColor = TBX.Color.FromRGBA(0, 0, 0, 255);
-        let Backs:TBX.ImageCollection = new TBX.ImageCollection(null, ["Resources/Textures/Backgrounds/Back.png"]);
-        let Back:TBX.Tile = new TBX.Tile();
-        Back.Name = "Back";
-        Back.Collection = Backs;
-        Back.Index = 0;
-        Back.Size = new TBX.Vertex(1920,1080,0);
-        Back.Position = new TBX.Vertex(960,540,0);
-        Back.Material.Sampling = TBX.TextureSamplingType.Nearest;
-        this.Attach(Back);
+        this.Trans.Translation.X -= 3;
+        this._Parallax.Update();
     }
-    public PlayClick(G:any, Args:any) : void 
+    public PlayClick(G:TBX.Game, Args:any) : void 
     { 
+        for(let i in G.Scenes)
+        {
+            if(G.Scenes[i].Name == "Game")
+            {
+                G.Remove(G.Scenes[i]);
+                break;
+            }
+        }
         let Scene = new GameScene(); 
         this._Game.Attach(Scene); 
         this._Runner.SwitchScene("Game", false); 
+    } 
+    public CreditsClick(G:any, Args:any) : void 
+    { 
+        this._Runner.SwitchScene("Credits", false); 
     } 
 }

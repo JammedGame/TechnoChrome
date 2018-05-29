@@ -7,8 +7,9 @@ import { ColorModel, ActionTile } from "./../Elements/ActionTile";
 import { Secret } from "./../Elements/Secret";
 import { ColorPower } from "./../Elements/ColorPower";
 import { Enemy } from "./../Elements/Enemy";
+import { GameEnd } from "./../Elements/GameEnd";
 
-import { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, Chunk6, TallBrickWall, Chunk4bSecret, Chunk1Secret, DeathFloorChunk } from "./LevelData";
+import { Chunk1, Chunk2, Chunk3, Chunk4, Chunk4a, Chunk4b, Chunk5, Chunk6, Chunk6a, TallBrickWall, Chunk4bSecret, Chunk1Secret, DeathFloorChunk, FinalChunk } from "./LevelData";
 
 const TILE_SIZE = 192;
 
@@ -18,7 +19,7 @@ class LevelGenerator
     private _Scene:TBX.Scene2D;
     private _Secrets:Secret[];
     private _Enemies:Enemy[];
-    private _Powers:ColorPower[];
+    private _Powers:any[];
     private _Changeables:ActionTile[];
     public constructor(Old?:LevelGenerator, Scene?:TBX.Scene2D)
     {
@@ -118,9 +119,18 @@ class LevelGenerator
         for(let i in Data.Powers)
         {
             let CPD = Data.Powers[i];
-            let CP = new ColorPower(null, new TBX.Vertex(CPD.X + XOffset, CPD.Y + YOffset, 0), <ColorModel>CPD.C);
-            this._Scene.Attach(CP);
-            this._Powers.push(CP);
+            if(CPD.C == -1)
+            {
+                let CP = new GameEnd(null, new TBX.Vertex(CPD.X + XOffset, CPD.Y + YOffset, 0));
+                this._Scene.Attach(CP);
+                this._Powers.push(CP);
+            }
+            else
+            {
+                let CP = new ColorPower(null, new TBX.Vertex(CPD.X + XOffset, CPD.Y + YOffset, 0), <ColorModel>CPD.C);
+                this._Scene.Attach(CP);
+                this._Powers.push(CP);
+            }
         }
         for(let i in Data.Secrets)
         {
@@ -153,10 +163,11 @@ class LevelGenerator
         this.CreateChunk(Chunk5, 88, -1);
         this.CreateChunk(TallBrickWall, 103, -9);
         this.CreateChunk(Chunk6, 103, 1);
-        for(let i = -2; i < 10; i++)
+        this.CreateChunk(Chunk6a, 110, 1);
+        this.CreateChunk(FinalChunk, 120, 11);
+        for(let i = -2; i < 25; i++)
         {
             this.CreateChunk(DeathFloorChunk, i*8, 40);
         }
-        //this.CreateChunk(Chunk4b, 5, 5);
     }
 }

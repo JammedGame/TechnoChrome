@@ -27,7 +27,7 @@ class PowerModel
     }
     private Init() : void
     {
-        this._RedE = false;
+        this._RedE = true;
         this._BlueE = false;
         this._YellowE = false;
         this._RedA = false;

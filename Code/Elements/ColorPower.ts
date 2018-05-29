@@ -4,6 +4,7 @@ import * as TBX from "engineer-js";
 
 import { Player } from "./Player";
 import { ColorModel } from "./../Elements/ActionTile";
+import { SoundManager } from "./../SoundManager";
 
 class ColorPower extends TBX.Tile
 {
@@ -30,6 +31,7 @@ class ColorPower extends TBX.Tile
         if(this._Picked) return;
         if(TBX.Vertex.Distance(Player.Single.Position, this.Position) < 200)
         {
+            SoundManager.PlaySpecial();
             this._Picked = true;
             this.Active = false;
             Player.Single.Power.Enable(this._Model);

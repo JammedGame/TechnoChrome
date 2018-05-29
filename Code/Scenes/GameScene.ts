@@ -6,6 +6,7 @@ import { Player } from "./../Elements/Player";
 import { Parallax } from "./../Elements/Parallax";
 import { LevelGenerator } from "./LevelGenerator";
 import { ColorModel } from "./../Elements/ActionTile";
+import { SoundManager } from "./../SoundManager";
 
 class GameScene extends TBX.Scene2D
 {
@@ -45,18 +46,21 @@ class GameScene extends TBX.Scene2D
         this._Player.KeyDown(Args.KeyCode);
         if(Args.KeyCode == 49)
         {
+            SoundManager.PlaySwitch();
             this._Player.Power.Apply(ColorModel.Red);
             this._Parallax.UpdateFilter(this._Player.Power.Get());
             this._Generator.UpdateFilter(this._Player.Power.Get());
         }
         if(Args.KeyCode == 50)
         {
+            SoundManager.PlaySwitch();
             this._Player.Power.Apply(ColorModel.Blue);
             this._Parallax.UpdateFilter(this._Player.Power.Get());
             this._Generator.UpdateFilter(this._Player.Power.Get());
         }
         if(Args.KeyCode == 51)
         {
+            SoundManager.PlaySwitch();
             this._Player.Power.Apply(ColorModel.Yellow);
             this._Parallax.UpdateFilter(this._Player.Power.Get());
             this._Generator.UpdateFilter(this._Player.Power.Get());
