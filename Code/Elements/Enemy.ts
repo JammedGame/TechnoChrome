@@ -64,14 +64,14 @@ class Enemy extends TBX.Sprite
         }
         if(this._Left)
         {
-            this._Velocity.X = -3;
+            this._Velocity.X = -8;
             if(this.Collision.Result.Left)
             this._Velocity.X = 0;
             //if(!this._Landing && !this._Death) this.UpdS("Idle"); //Walk
         }
         else if(this._Right)
         {
-            this._Velocity.X = 3;
+            this._Velocity.X = 8;
             if(this.Collision.Result.Right)
             this._Velocity.X = 0;
             //if(!this._Landing && !this._Death) this.UpdS("Idle"); //Walk
@@ -85,7 +85,7 @@ class Enemy extends TBX.Sprite
         else
         {
             this._Velocity.X = 0;
-            //if(!this._Landing && !this._Death && this.Collision.Result.Bottom) this.UpdS("Idle");
+            if(!this._Landing && !this._Death && this.Collision.Result.Bottom) this.UpdS("Idle");
         }
         this.Position.Add(this._Velocity);
     }
@@ -95,10 +95,16 @@ class Enemy extends TBX.Sprite
         this._Right = false;
         if(!this.Collision.Result.Bottom) return;
         this._Flipped = Player.Single.Position.X < this.Position.X;
-        if(Math.abs(Player.Single.Position.X - this.Position.X) < 800)
+        if(Math.abs(Player.Single.Position.Y - this.Position.Y) < 300)
         {
-            if(this._Flipped) this._Left = true;
-            else this._Right = true;
+            if(Math.abs(Player.Single.Position.X - this.Position.X) < 500)
+            {
+            }
+            else if(Math.abs(Player.Single.Position.X - this.Position.X) < 800)
+            {
+                if(this._Flipped) this._Left = true;
+                else this._Right = true;
+            }
         }
     }
     private AnimationFinished() : void
@@ -114,6 +120,7 @@ class Enemy extends TBX.Sprite
     }
     public Init(Position?:TBX.Vertex) : void
     {
+        this._Death = false;
         this._Velocity = new TBX.Vertex();
         this.Size = new TBX.Vertex(192,192,1);
         Position.Scalar(192);

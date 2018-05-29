@@ -133,7 +133,6 @@ class LevelGenerator
         {
             let CPD = Data.Enemies[i];
             let CP = new Enemy(null, this._Scene, new TBX.Vertex(CPD.X + XOffset, CPD.Y + YOffset, 0));
-            this._Scene.Attach(CP);
             this._Enemies.push(CP);
         }
     }
@@ -158,5 +157,6 @@ class LevelGenerator
         {
             this.CreateChunk(DeathFloorChunk, i*8, 40);
         }
+        //this.CreateChunk(Chunk4b, 5, 5);
     }
 }

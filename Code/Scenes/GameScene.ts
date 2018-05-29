@@ -24,8 +24,6 @@ class GameScene extends TBX.Scene2D
         // Virtual
         this.Name = "Game";
         this._Player = new Player(null, this);
-        let pl = new Player(null, this);
-        this.Attach(pl);
         this._Parallax = new Parallax();
         this.Attach(this._Parallax);
         this._Generator = new LevelGenerator(null, this);
