@@ -3,12 +3,14 @@ export { Enemy }
 import * as TBX from "engineer-js";
 
 import { Player } from "./Player";
+import { Projectile } from "./Projectile";
 
 class Enemy extends TBX.Sprite
 {
     public LeftPosMax:number;
     public RightPosMax:number;
-
+    private _Attack:boolean;
+    private _AfterAttack:boolean;
     private _Landing:boolean;
     private _Death:boolean;
     private _Left:boolean;
@@ -16,6 +18,7 @@ class Enemy extends TBX.Sprite
     private _Flipped:boolean;
     private _Scene:TBX.Scene2D;
     private _Velocity:TBX.Vertex;
+    private _Projectiles:Projectile[];
     public constructor(Old?:Enemy, Scene?:TBX.Scene2D, Position?:TBX.Vertex)
     {
         super(Old);
@@ -32,6 +35,15 @@ class Enemy extends TBX.Sprite
     }
     public Update()
     {
+        for(let i = this._Projectiles.length - 1; i >= 0; i--)
+        {
+            if(this._Projectiles[i].Deactivated)
+            {
+                this._Projectiles.splice(i,1);
+                continue;
+            }
+            this._Projectiles[i].Update();
+        }
         if(this._Death) return;
         TBX.CollisionUtil.Check(this, this._Scene);
         this.Logic();
@@ -67,14 +79,14 @@ class Enemy extends TBX.Sprite
             this._Velocity.X = -8;
             if(this.Collision.Result.Left)
             this._Velocity.X = 0;
-            //if(!this._Landing && !this._Death) this.UpdS("Idle"); //Walk
+            if(!this._Attack && !this._AfterAttack && !this._Landing && !this._Death) this.UpdS("Idle"); //Walk
         }
         else if(this._Right)
         {
             this._Velocity.X = 8;
             if(this.Collision.Result.Right)
             this._Velocity.X = 0;
-            //if(!this._Landing && !this._Death) this.UpdS("Idle"); //Walk
+            if(!this._Attack && !this._AfterAttack && !this._Landing && !this._Death) this.UpdS("Idle"); //Walk
         }
         else if(this._Death && this._Velocity.X != 0)
         {
@@ -85,26 +97,27 @@ class Enemy extends TBX.Sprite
         else
         {
             this._Velocity.X = 0;
-            if(!this._Landing && !this._Death && this.Collision.Result.Bottom) this.UpdS("Idle");
+            if(!this._Attack && !this._AfterAttack && !this._Landing && !this._Death && this.Collision.Result.Bottom) this.UpdS("Idle");
         }
         this.Position.Add(this._Velocity);
     }
     private Logic() : void
     {
+        if(Player.Single.Dead) return;
         this._Left = false;
         this._Right = false;
         if(!this.Collision.Result.Bottom) return;
         this._Flipped = Player.Single.Position.X < this.Position.X;
-        if(Math.abs(Player.Single.Position.Y - this.Position.Y) < 300)
+        if(this._Attack || this._AfterAttack) return;
+        if( Math.abs(Player.Single.Position.Y - this.Position.Y) < 300 && Math.abs(Player.Single.Position.X - this.Position.X) < 800)
         {
-            if(Math.abs(Player.Single.Position.X - this.Position.X) < 500)
-            {
-            }
-            else if(Math.abs(Player.Single.Position.X - this.Position.X) < 800)
-            {
-                if(this._Flipped) this._Left = true;
-                else this._Right = true;
-            }
+            this._Attack = true;
+            this.UpdS("Attack");
+        }
+        else if(Math.abs(Player.Single.Position.Y - this.Position.Y) < 600 && Math.abs(Player.Single.Position.X - this.Position.X) < 1000)
+        {
+            if(this._Flipped) this._Left = true;
+            else this._Right = true;
         }
     }
     private AnimationFinished() : void
@@ -117,6 +130,19 @@ class Enemy extends TBX.Sprite
         {
             this.UpdS("Dead");
         }
+        if(this._Attack)
+        {
+            let Proj = new Projectile(null, this._Scene, this.Position.Copy().Add(new TBX.Vertex((this._Flipped)?-80:80, -20, 0)), (this._Flipped)?-12:12);
+            this._Projectiles.push(Proj);
+            this._Attack = false;
+            this._AfterAttack = true;
+            this.UpdS("AfterAttack");
+        }
+        else if(this._AfterAttack)
+        {
+            this._AfterAttack = false;
+            this.UpdS("Idle");
+        }
     }
     public Init(Position?:TBX.Vertex) : void
     {
@@ -126,9 +152,12 @@ class Enemy extends TBX.Sprite
         Position.Scalar(192);
         Position.Z = 0.4;
         this.Position = Position;
+        this._Projectiles = [];
         this.Collision.Type = TBX.CollisionType.Rectangular;
         this.Collision.Scale = new TBX.Vertex(128, 192, 1);
-        this.LoadSet("Idle", 4, 15);
+        this.LoadSet("Idle", 4, 12);
+        this.LoadSet("Attack", 3, 10);
+        this.LoadSet("AfterAttack", 3, 10);
         this.Events.SetComplete.push(this.AnimationFinished.bind(this));
         this.SetS("Idle");
     }

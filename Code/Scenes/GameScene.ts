@@ -41,6 +41,7 @@ class GameScene extends TBX.Scene2D
     }
     private KeyDown(G:TBX.Game, Args:any) : void
     {
+        if(this._Player.Dead) return;
         this._Player.KeyDown(Args.KeyCode);
         if(Args.KeyCode == 49)
         {

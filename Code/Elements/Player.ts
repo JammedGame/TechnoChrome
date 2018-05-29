@@ -17,6 +17,7 @@ class Player extends TBX.Sprite
     private _Velocity:TBX.Vertex;
     private _Power:PowerModel;
     private _SecretsFound:number;
+    public get Dead():boolean { return this._Death; }
     public get SecretsFound() : number { return this._SecretsFound; }
     public set SecretsFound(value:number) { this._SecretsFound = value; }
     public get Power():PowerModel { return this._Power; }
@@ -95,6 +96,13 @@ class Player extends TBX.Sprite
         this.Position.Add(this._Velocity);
         this._Scene.Trans.Translation.Add(this._Velocity.Copy().Scalar(-1));
     }
+    public Kill()
+    {
+        this.UpdS("Death");
+        this._Death = true;
+        this._Left = false;
+        this._Right = false;
+    }
     public KeyDown(KeyCode:number) : void
     {
         if(this._Death) return;
@@ -115,10 +123,7 @@ class Player extends TBX.Sprite
         }
         else if(KeyCode == 88)
         {
-            this.UpdS("Death");
-            this._Death = true;
-            this._Left = false;
-            this._Right = false;
+            this.Kill();
         }
     }
     public KeyUp(KeyCode:number) : void
