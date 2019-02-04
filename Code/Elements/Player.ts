@@ -155,7 +155,7 @@ class Player extends TBX.Sprite
         {
             if(this._Dead) return;
             this.UpdS("Dead");
-            setTimeout(TBX.Runner.Current.SwitchScene("GameOver", false), 10000);
+            setTimeout(() => { TBX.Runner.Current.SwitchScene("GameOver") } , 10000);
             this._Dead = true;
         }
     }

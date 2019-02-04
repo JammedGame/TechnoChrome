@@ -15,12 +15,12 @@
   "author": "JammedGame",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^2.4.2",
-    "webpack": "^3.5.3",
-    "webpack-dev-server": "^2.7.1"
+    "typescript": "2.8.1",
+    "webpack": "3.5.3",
+    "webpack-dev-server": "2.7.1"
   },
   "dependencies": {
-    "engineer-js": "0.0.63",
-    "ts-loader": "^2.3.2"
+    "engineer-js": "0.0.68",
+    "ts-loader": "2.3.2"
   }
 }

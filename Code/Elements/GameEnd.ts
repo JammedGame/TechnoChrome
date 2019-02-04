@@ -33,7 +33,7 @@ class GameEnd extends TBX.Tile
             this._Picked = true;
             this.Active = false;
             TBX.Runner.Current.Game.Data["SF"] = Player.Single.SecretsFound;
-            TBX.Runner.Current.SwitchScene("GameSuccess",false);
+            TBX.Runner.Current.SwitchScene("GameSuccess");
         }
     }
     private Init(Position:TBX.Vertex) : void
