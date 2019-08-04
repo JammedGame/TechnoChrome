@@ -1,6 +1,6 @@
 export { Secret }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Player } from "./Player";
 import { SoundManager } from "./../SoundManager";

@@ -1,6 +1,6 @@
 export { LevelGenerator }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { ColorModel, ActionTile } from "./../Elements/ActionTile";
 

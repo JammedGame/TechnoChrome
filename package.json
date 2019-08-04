@@ -4,9 +4,8 @@
   "description": "Project description",
   "main": "build/public/tc.js",
   "scripts": {
-    "start": "tsc && webpack-dev-server --hot",
-    "build": "tsc && webpack --watch",
-    "prod": "tsc && webpack -p",
+    "start": "webpack && webpack-dev-server --hot",
+    "prod": "tsc && webpack --mode=production",
     "test": "cd tests"
   },
   "keywords": [
@@ -15,12 +14,13 @@
   "author": "JammedGame",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "2.8.1",
-    "webpack": "3.5.3",
-    "webpack-dev-server": "2.7.1"
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.1",
+    "webpack": "^4.29.1",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "engineer-js": "0.0.68",
-    "ts-loader": "2.3.2"
+    "toybox-engine": "^0.2.0"
   }
 }

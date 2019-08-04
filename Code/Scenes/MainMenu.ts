@@ -1,6 +1,6 @@
 export { MainMenu }; 
  
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
  
 import { GameScene } from "./GameScene";
 import { Parallax } from "./../Elements/Parallax";

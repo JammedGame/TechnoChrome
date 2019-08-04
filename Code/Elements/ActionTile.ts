@@ -1,6 +1,6 @@
 export { ColorModel, ActionTile }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 const TILE_SIZE = 192;
 

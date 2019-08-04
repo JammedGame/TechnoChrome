@@ -1,6 +1,6 @@
 export { GameScene };
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Player } from "./../Elements/Player";
 import { Parallax } from "./../Elements/Parallax";

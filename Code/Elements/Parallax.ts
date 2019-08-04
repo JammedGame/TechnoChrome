@@ -1,6 +1,6 @@
 export { Parallax }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { ColorModel } from "./../Elements/ActionTile";
 

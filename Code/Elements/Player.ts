@@ -1,6 +1,6 @@
 export { Player }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { PowerModel } from "./PowerModel";
 import { SoundManager } from "./../SoundManager";

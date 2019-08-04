@@ -1,6 +1,6 @@
 export { GameLogic };
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { MainMenu } from "./Scenes/MainMenu";
 import { GameOver } from "./Scenes/GameOver";
