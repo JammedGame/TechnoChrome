@@ -5,6 +5,7 @@
   "main": "build/public/tc.js",
   "scripts": {
     "start": "webpack && webpack-dev-server --hot",
+    "build": "tsc && webpack --watch",
     "prod": "tsc && webpack --mode=production",
     "test": "cd tests"
   },

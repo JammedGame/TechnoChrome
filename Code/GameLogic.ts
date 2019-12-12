@@ -15,6 +15,7 @@ class GameLogic
     private _Runner:any;
     public constructor()
     {
+        TBX.Collision.AdditionalSideCheck = false;
         this._Game = new TBX.Game();
         this._Game.Name = "TechnoChrome";
         SoundManager.Init();
